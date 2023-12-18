@@ -1,16 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet, type ViewStyle } from 'react-native'
 
 interface Props {
-  children: string
+  children: JSX.Element
+  style?: ViewStyle
 }
 
 const CircleButton = (props: Props): JSX.Element => {
-  const { children } = props
+  const { children, style } = props
 
   return (
-    <View style={styles.circleButton}>
+    // スタイルを書き換える際は配列で渡してあげる
+    // 配列の後のものが優先されるため、デフォルトのスタイルを第一引数に、オプショナルなスタイルを第二引数に渡すことで
+    // デフォルトのスタイルを上書きすることができる
+    // 上書きするのはあくまで呼び出し元で指定されたスタイルのプロパティのみで、それ以外のプロパティはデフォルトのスタイルが適用される
+    // 例えば、CircleButtonコンポーネントの呼び出し元でstyle={{ top: 160, bottom: 'auto' }}と指定されている場合、
+    // デフォルトのスタイルのwidthやheightは適用されるが、topとbottomだけは上書きされる
+    <TouchableOpacity style={[styles.circleButton, style]}>
       <Text style={styles.circleButtonLabel}>{children}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 
