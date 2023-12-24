@@ -1,17 +1,15 @@
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import Header from '../../components/Header'
 import Button from '../../components/Button'
 import { Link, router } from 'expo-router'
 
 const handlePress = (): void => {
   // login
-  router.push('/memo/list')
+  router.replace('/memo/list')
 }
 
 const LogIn = (): JSX.Element => {
   return (
     <View style={styles.container}>
-      <Header />
       <View style={styles.inner}>
         <Text style={styles.title}>Log In</Text>
         <TextInput style={styles.input} value='Email Address' />
